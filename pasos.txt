@@ -1,0 +1,681 @@
+1 => Git clone  github.com/midudev/curso-platzi-react-avanzado
+2 => npm init -y
+3 => npm i webpack wepack-cli --save-dev
+4 => New Folder src
+5 => new file src/index.js 
+      console.log('Empezamos');
+6 => ./node_modules/.bin/webpack ./src/index.js
+7 => Probamos 
+      node dist/main.js 
+8 => npm install html-webpack-plugin --save-dev
+9 => Creamos webpack.config.js
+        const HtmlWebpackPlugin = require('html-webpack-plugin');
+        module.exports = {
+          output: {
+            filename: 'app.bundle.js'
+          },
+          plugins: [
+            new HtmlWebpackPlugin()
+          ]
+        }
+
+10 => Agregamos en el package.json
+      {
+        "name": "curso-platzi-react-avanzado",
+        "version": "1.0.0",
+        "description": "**¡Sígueme en Youtube para más contenido de React y Javascript!** 👉 https://www.youtube.com/midudev",
+        "main": "index.js",
+        "scripts": {
+          "build": "webpack",
+          "test": "echo \"Error: no test specified\" && exit 1"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/midudev/curso-platzi-react-avanzado.git"
+        },
+        "keywords": [],
+        "author": "",
+        "license": "ISC",
+        "bugs": {
+          "url": "https://github.com/midudev/curso-platzi-react-avanzado/issues"
+        },
+        "homepage": "https://github.com/midudev/curso-platzi-react-avanzado#readme",
+        "devDependencies": {
+          "html-webpack-plugin": "^5.2.0",
+          "webpack": "^5.23.0",
+          "webpack-cli": "^4.5.0"
+        }
+      }
+
+11 => npm run build
+12 => npm install webpack-dev-server --save-dev
+
+13 => Agregamos en el package.json
+
+     {
+      "name": "curso-platzi-react-avanzado",
+      "version": "1.0.0",
+      "description": "**¡Sígueme en Youtube para más contenido de React y Javascript!** 👉 https://www.youtube.com/midudev",
+      "main": "index.js",
+      "scripts": {
+        "build": "webpack",
+        "dev": "webpack serve",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/midudev/curso-platzi-react-avanzado.git"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "bugs": {
+        "url": "https://github.com/midudev/curso-platzi-react-avanzado/issues"
+      },
+      "homepage": "https://github.com/midudev/curso-platzi-react-avanzado#readme",
+      "devDependencies": {
+        "html-webpack-plugin": "^5.2.0",
+        "webpack": "^5.23.0",
+        "webpack-cli": "^4.5.0",
+        "webpack-dev-server": "^3.11.2"
+      }
+    }
+
+14 => Probamos el sevidor con el comando 
+    npm run dev
+15 => npm install react react-dom
+
+16 => Editamos index.js
+
+    import React from 'react'
+    import ReactDOM from 'react-dom'
+
+    ReactDOM.render('Hola Platzi',document.body)
+
+17 => en ./src creamos un file index.html
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Curso Avanzado de React</title>
+    </head>
+    <body>
+      <div id="app"></div>
+    </body>
+    </html>
+
+18 => Modificamos webpack.config.js
+
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    module.exports = {
+      output: {
+        filename: 'app.bundle.js'
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: 'src/index.html',
+        })
+      ]
+    }
+
+19 =>  Modificamos el index.js
+
+  import React from 'react'
+  import ReactDOM from 'react-dom'
+
+  ReactDOM.render('Hola Platzi',document.getElementById('app'))
+
+20 => instalamos babel
+
+      npm i @babel/core @babel/preset-env babel-loader @babel/preset-react --save-dev
+
+21 => En webpack.config.js
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+    module.exports = {
+      output: {
+        filename: 'app.bundle.js'
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: 'src/index.html',
+        })
+      ],
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env','@babel/preset-react']
+              }
+            }
+          }
+        ]
+      }
+    }
+
+
+22 => npm run dev
+
+23 => npm install standard --save-dev
+      Agregamos el package.json
+        "scripts": {
+          "build": "webpack",
+          "lint": "standard",
+          "dev": "webpack serve",
+          "test": "echo \"Error: no test specified\" && exit 1"
+        },
+      npm run lint
+
+24 => ignoramos el /api de standard en package.json
+
+      {
+        "name": "curso-platzi-react-avanzado",
+        "version": "1.0.0",
+        "description": "**¡Sígueme en Youtube para más contenido de React y Javascript!** 👉 https://www.youtube.com/midudev",
+        "main": "index.js",
+        "scripts": {
+          "build": "webpack",
+          "lint": "standard",
+          "dev": "webpack serve",
+          "test": "echo \"Error: no test specified\" && exit 1"
+        },
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/midudev/curso-platzi-react-avanzado.git"
+        },
+        "keywords": [],
+        "author": "",
+        "license": "ISC",
+        "bugs": {
+          "url": "https://github.com/midudev/curso-platzi-react-avanzado/issues"
+        },
+        "homepage": "https://github.com/midudev/curso-platzi-react-avanzado#readme",
+        "devDependencies": {
+          "@babel/core": "^7.13.0",
+          "@babel/preset-env": "^7.13.0",
+          "@babel/preset-react": "^7.12.13",
+          "babel-loader": "^8.2.2",
+          "html-webpack-plugin": "^5.2.0",
+          "standard": "^16.0.3",
+          "webpack": "^5.23.0",
+          "webpack-cli": "^4.5.0",
+          "webpack-dev-server": "^3.11.2"
+        },
+        "dependencies": {
+          "react": "^17.0.1",
+          "react-dom": "^17.0.1"
+        },
+        "standard": {
+          "ignore": [
+            "/api/**"
+          ]
+        }
+      }
+
+25 => npm run lint
+
+26 => instalamos la extensión eslint y prettier
+
+
+27 => npm i -g vercel
+    Nota en caso de problemas con instalar golbal 
+    seguir estos pasos
+    https://lenguajejs.com/npm/introduccion/problemas-permisos-npm/
+    
+28 => vercel login
+29 => vercel dentro de la carpeta /api
+
+
+    Comando vercel para hacer upload
+
+
+30 => Creamos un vercel.json en la raiz para el front 
+
+    {
+      "version": 2,
+      "name": "petgram-front-danielrico",
+      "builds": [
+        {
+          "use": "@now/static-build",
+          "src": "package.json"
+        }
+      ],
+      "routes": [
+        {
+          "src": "(.*).js", "dest": "/$1.js"
+        },
+        {
+          "src": "(.*).json", "dest": "/$1.json"
+        },
+        {
+          "src": "/.*", "dest": "/index.html"
+        }
+      ]
+    }
+
+
+31 => Agregamos en el package.json 
+
+  "scripts": {
+    "now-build": "npm run build",
+*********************************************************
+
+32 => Agregamos styled component tanto en extensión de vscode como 
+en npm 
+
+vscode-styled-components
+
+npm install styled-components
+
+33 => Creamos en ./src App.js
+
+import React from 'react'
+
+export const App = () => (
+  <h1>Seguimos avanzando</h1>
+)
+
+34 => desde index.js traemos a App
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { App } from './App'
+
+ReactDOM.render(<App />, document.getElementById('app'))
+
+35 => Creamos en /src la carpeta components y dentro de ella el primer componente
+llamado Category
+
+    import React from 'react'
+
+    const DEFAULT_IMAGE = 'https://i.imgur.com/dJa0Hpl.jpg'
+
+    export const Category = ({ cover = DEFAULT_IMAGE, path, emoji = '?' }) => (
+      <a href={path}>
+        <img src={cover} alt='imagen' />
+        {emoji}
+      </a>
+    )
+
+36 => desde App.js lo importamos
+
+    import React from 'react'
+    import { Category } from './components/Category'
+
+    export const App = () => (
+      <Category />
+    )
+
+/************************************
+NOTA IMPORTANTE, CUANDO EXPORTAMOS CON UN NOMBRE EXPLICITO, DEBEMOS IMPORTAR
+USANDO {}
+/************************************
+
+
+37 => Creamos los estylos, dentro del componente creamos styles.js
+
+
+      import styled from 'styled-components'
+
+      export const Anchor = styled.a`
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        text-decoration: none;
+        width: 75px;
+      `
+      export const Image = styled.img`
+        border: 1px solid #ddd;
+        box-shadow: 0px 10px 14px rgba(0, 0, 0, .2);
+        border-radius: 50%;
+        height: auto;
+        overflow: hidden;
+        object-fit: cover;
+      `
+
+38 => Probamos en app.js
+   
+  import React from 'react'
+  import { Category } from './components/Category'
+
+  export const App = () => (
+    <Category />
+  )
+
+39 => Creamos ./src/components/ListOfCategories
+    index.js
+
+    import React from 'react'
+    import { Category } from '../Category'
+    import { List, Item } from './styles'
+
+    export const ListOfCategories = () => {
+      return (
+        <List>
+          {
+            [1, 2, 3, 4].map(category => <Item key={category}> <Category /> </Item>)
+          }
+        </List>
+      )
+    }
+  
+
+  En styles.js
+
+    import styled from 'styled-components'
+
+    export const List = styled.ul`
+      display:flex;
+      overflow: scroll;
+      width: 100%;
+    `
+    export const Item = styled.li`
+      padding: 0 8px;
+    `
+
+
+40 =>  Ajustamos app.js
+
+      import React from 'react'
+      import { ListOfCategories } from './components/ListOfCategories'
+
+      export const App = () => (
+        <ListOfCategories />
+      )
+      
+41 => 
+    41.1 => Crearemos en src/GlobalStyles.js
+
+    import { createGlobalStyle } from 'styled-components'
+
+    export const GlobalStyle = createGlobalStyle`
+      html {
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      *, *::before, *::after {
+        box-sizing: inherit;
+      }
+      ul, li, h1, h2, h3, p, button {
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      button {
+        background: transparent;
+        border: 0;
+        outline: 0;
+      }
+      body {
+        background: #fefefe;
+        height: 100vh;
+        margin: 0 auto;
+        max-width: 500px;
+        overscroll-behavior: none;
+        width: 100%;
+      }
+      #app {
+        box-shadow: 0 0 10px rgba(0, 0, 0, .05 );
+        overflow-x: hidden;
+        min-height: 100vh;
+        padding-bottom: 10px;
+      }
+    `
+
+
+    41.2 => Luego en components/App.js
+
+        import React from 'react'
+        import { ListOfCategories } from './components/ListOfCategories'
+        import { GlobalStyle } from './GlobalStyles'
+
+        export const App = () => (
+          <>
+            <GlobalStyle />
+            <ListOfCategories />
+          </>
+        )
+
+42 => Ahora enlazamos las categorias, con el archivo json simulando una base de datos.
+
+    En ListOfCategories
+
+
+    import React from 'react'
+    import { Category } from '../Category'
+    import { List, Item } from './styles'
+    import { categories } from '../../../api/db.json'
+
+    export const ListOfCategories = () => {
+      return (
+        <List>
+          {
+            categories.map(category => <Item key={category.id}> <Category {...category} /> </Item>)
+          }
+        </List>
+      )
+    }
+
+
+  43 => Creamos src/PhotoCard/index.js y styles.js
+
+
+      import React from 'react'
+      import { ImgWrapper, Img, Button } from './styles'
+
+      const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+
+      export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+        return (
+          <>
+            <article>
+              <a href={`/detail/${id}`}>
+                <ImgWrapper>
+                  <Img src={src} alt='imagen' />
+                </ImgWrapper>
+              </a>
+              <Button>
+                {likes} likes!
+              </Button>
+            </article>
+          </>
+        )
+      }
+
+
+
+
+    import styled from 'styled-components'
+
+    export const ImgWrapper = styled.div`
+      border-radius: 10px;
+      display: block;
+      height: 0;
+      overflow: hidden;
+      padding: 26.25% 0 0 0;
+      position: relative;
+      width: 100%;
+    `
+
+    export const Img = styled.img`
+      box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      width:100%;
+    `
+    export const Button = styled.button`
+        display: flex; 
+        align-items: center;
+        padding-top: 8px;    
+        & svg {
+            margin-right: 4px;
+
+        }
+    `
+
+44 => Instalamos npm install react-icons
+
+    https://react-icons.github.io/react-icons/icons?name=md
+
+
+    import React from 'react'
+    import { ImgWrapper, Img, Button } from './styles'
+    import { MdFavoriteBorder } from 'react-icons/md'
+
+    const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+
+    export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+      return (
+        <>
+          <article>
+            <a href={`/detail/${id}`}>
+              <ImgWrapper>
+                <Img src={src} alt='imagen' />
+              </ImgWrapper>
+            </a>
+            <Button>
+              <MdFavoriteBorder size='32px' />{likes} likes!
+            </Button>
+          </article>
+        </>
+      )
+    }
+
+  45 => Creamos components/ListOfPhotoCard/index.js
+
+        import React from 'react'
+        import { PhotoCard } from '../PhotoCard'
+
+        export const ListOfPhotoCards = () => {
+          return (
+            <ul>
+              {[1, 2, 3].map(id => <PhotoCard key={id} />)}
+            </ul>
+          )
+        }
+
+  46 => Actualizamos app.js
+
+      import React from 'react'
+      import { ListOfCategories } from './components/ListOfCategories'
+      import { GlobalStyle } from './GlobalStyles'
+      import { ListOfPhotoCards } from './components/ListOfPhotoCards'
+
+      export const App = () => (
+        <>
+          <GlobalStyle />
+          <ListOfCategories />
+          <ListOfPhotoCards />
+        </>
+      )
+
+
+
+ 47 => Crear un logo svg optimizarlo y luego llevarlo a a un componente de react
+
+    Paso 1: crear el svg
+    Paso 2: Optimizar https://jakearchibald.github.io/svgomg/
+    Paso 3: Crear el componente  https://react-svgr.com/playground/
+    Paso 4: Creamos la carpeta Logo/index y Logo/styless
+    Paso 5: Agregamos el Logo a App.js
+
+      import React from 'react'
+      import { ListOfCategories } from './components/ListOfCategories'
+      import { GlobalStyle } from './GlobalStyles'
+      import { ListOfPhotoCards } from './components/ListOfPhotoCards'
+      import { Logo } from './components/Logo'
+
+      export const App = () => (
+        <>
+          <GlobalStyle />
+          <Logo />
+          <ListOfCategories />
+          <ListOfPhotoCards />
+        </>
+      )
+
+
+
+
+ **************************************************************************************
+
+Apollo
+
+ 48 =>  npm install @apollo/client graphql
+
+
+documentación https://www.apollographql.com/docs/react/get-started/
+
+49 => Luego en la entrada de la app
+
+
+    import React from 'react'
+    import ReactDOM from 'react-dom'
+    import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+    import { App } from './App'
+
+    const client = new ApolloClient({
+      uri: 'https://petgram-server-danielrico-darmdax.vercel.app/graphql',
+      cache: new InMemoryCache()
+    })
+    ReactDOM.render(
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>, document.getElementById('app'))
+
+
+      50 => en ListOF ListOfPhotoCards
+
+
+      import React from 'react'
+      import { PhotoCard } from '../PhotoCard'
+      import { useQuery, gql } from '@apollo/client'
+      // import { graphql } from 'graphql';
+
+      const withPhotos = gql`
+      query getPhotos {
+        photos {
+          id
+          categoryId
+          src
+          likes
+          userId
+          liked
+        }
+      }
+      `
+      /*
+      28: {
+        file: "@apollo/client/react/context/ApolloProvider.js",
+
+        node: invariant(context.client, 'ApolloProvider was not passed a client instance. Make ' +
+            'sure you pass in your client via the "client" prop.')
+      },
+      */
+      export const ListOfPhotoCards = () => {
+        const { loading, error, data } = useQuery(withPhotos)
+        if (loading) return <p>Loading</p>
+        if (error) return <p>Error!!</p>
+        return (
+          <ul>
+            {data.photos.map((photo) => (
+              <li key={photo.id}>
+                <PhotoCard key={photo.id} {...photo} />
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+
+
+51 => 
