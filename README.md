@@ -9,8 +9,3 @@ Repositorio con el código del [Curso Avanzado de React de Platzi](https://platz
 
 
 
-
-Compilar en modo desarrollo webpack
-
-./node_modules/.bin/webpack --mode "development"
-npx serve dist -s

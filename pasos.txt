@@ -679,3 +679,40 @@ documentación https://www.apollographql.com/docs/react/get-started/
 
 
 51 => 
+Compilar en modo desarrollo webpack
+
+./node_modules/.bin/webpack --mode "development"
+npx serve dist -s
+
+
+
+52 => npm install prop-types
+
+
+53 => npm install webpack-pwa-manifest -D
+
+y actulizo webpack.config
+
+
+54 => npm install workbox-webpack-plugin -D
+
+
+55 => npm install cypress -D
+
+    ./node_modules/.bin/cypress open
+
+tener instalado en ubuntu 
+
+sudo apt-get update
+
+sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+
+
+si no funciona utilizo
+
+sudo apt-get install xvfb
+
+https://nickymeuleman.netlify.app/blog/gui-on-wsl2-cypress
+
+
+https://ubunlog.com/vcxsrv-nos-permite-usar-apps-de-linux-con-interfaz-de-usuario-en-windows-10/
